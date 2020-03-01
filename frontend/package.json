@@ -16,7 +16,8 @@
     "papaparse": "^5.1.1",
     "plotly.js-dist": "^1.52.2",
     "vis-graph3d": "^5.5.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",

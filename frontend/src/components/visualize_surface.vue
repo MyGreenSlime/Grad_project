@@ -18,7 +18,34 @@ export default {
     });
   },
   mounted() {
-    this.plotSurface();
+    let data = [
+        {
+          name: "",
+          z: [],
+          x: this.XData,
+          y: this.YData,
+          type: "surface",
+          showscale: true,
+          colorscale: [["0", "rgb(255,0,0)"][("1", "rgb(0,255,0)")]],
+          cmax: 0,
+          cmin: 0
+        }
+      ];
+      let layout = {
+        title: {
+          text: this.Title,
+          font: {
+            family: "Courier New, monospace",
+            size: 24
+          }
+        },
+        scene: {
+          xaxis: { title: "LogMW" },
+          yaxis: { title: "Temperature" },
+          zaxis: { title: "" }
+        }
+      };
+    Plotly.newPlot("chart",data, layout,{ responsive: true });
   },
   data() {
     return {
@@ -46,7 +73,6 @@ export default {
       },
       XData: [],
       YData: [],
-      Graph: null,
       csvData: {
         avg_density: output_avg_density,
         avg_mi: output_avg_mi,
@@ -72,7 +98,6 @@ export default {
       let maxZ = 0;
       let minZ = 10;
       await Plotly.d3.csv(csvData, (error, rows) => {
-        console.log(rows);
         let Columns = Object.keys(rows[0]);
         rows.map(row => {
           let tempRowData = Columns.map(col => {
@@ -118,7 +143,7 @@ export default {
           zaxis: { title: this.ZTitle }
         }
       };
-      this.Graph = Plotly.newPlot("chart", data, layout, { responsive: true });
+      Plotly.newPlot("chart", data, layout, { responsive: true });
     }
   },
   computed: {},
@@ -131,9 +156,9 @@ export default {
 </script>
 <style scoped>
 #chart {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+  width: 75vw;
+  height: 80vh;
+  margin: 0 auto;
+  padding: 0 auto;
 }
 </style>

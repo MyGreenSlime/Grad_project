@@ -2,8 +2,6 @@ import sys
 import os
 import tensorflow as tf
 from PrepareData import *
-dirpath = os.getcwd()
-dirpath = dirpath.replace('\\','/')
 model_density = tf.keras.models.load_model('./python/density_model')
 model_mi = tf.keras.models.load_model('./python/mi_model')
 

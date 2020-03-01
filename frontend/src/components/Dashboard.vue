@@ -1,14 +1,29 @@
 <template>
-  <div>
+  <div class="container">
+    <div>
+      <h1 class="title is-4">Relationship Mapping</h1>
+    </div>
+    <div class="columns">
+      <div class="column is-3 is-offset-9 selected">
+        <div class="field">
+          <label class="label">Method</label>
+          <div class="control">
+            <div class="select">
+              <select v-model="method" @change="handleSelected">
+                <option>Density Average</option>
+                <option>Density Max</option>
+                <option>Melt Flow Index Average</option>
+                <option>Melt Flow Index Max</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="dashboard">
       <VisualizeSurface :Title="title" :ZTitle="ztitle" :DataSet="dataset"></VisualizeSurface>
     </div>
-    <div class="buttons_set">
-      <button class="button is-primary" @click="changeDataset1">Density Average</button>
-      <button class="button is-primary" @click="changeDataset4">Density Max</button>
-      <button class="button is-primary" @click="changeDataset2">Melt Flow Index Average</button>
-      <button class="button is-primary" @click="changeDataset3">Melt Flow Index Max</button>
-    </div>
+    
   </div>
 </template>
 <script>
@@ -19,31 +34,32 @@ export default {
   },
   data: function() {
     return {
+      method : "",
       dataset: "",
       title: "",
       ztitle: ""
     };
   },
   methods: {
-    changeDataset1: function() {
-      (this.dataset = "avg_density"),
-        (this.title = "Density Average"),
-        (this.ztitle = "Density");
-    },
-    changeDataset2: function() {
-      (this.dataset = "avg_mi"),
-        (this.title = "Melt Flow Index Average"),
-        (this.ztitle = "Melt Flow Index");
-    },
-    changeDataset3: function() {
-      (this.dataset = "max_mi"),
-        (this.title = "Melt Flow Index Max"),
-        (this.ztitle = "Melt Flow Index");
-    },
-    changeDataset4: function() {
-      (this.dataset = "max_density"),
-        (this.title = "Density Max"),
-        (this.ztitle = "Density");
+    handleSelected : function(){
+      if(this.method == "Density Average"){
+        this.dataset = "avg_density"
+        this.title = "Density Average"
+        this.ztitle = "Density";
+      } else if(this.method == "Density Max"){
+        this.dataset = "max_density"
+        this.title = "Density Max"
+        this.ztitle = "Density"
+
+      } else if(this.method == "Melt Flow Index Average"){
+        this.dataset = "avg_mi"
+        this.title = "Melt Flow Index Average"
+        this.ztitle = "Melt Flow Index"
+      } else if(this.method == "Melt Flow Index Max"){
+        this.dataset = "max_mi"
+        this.title = "Melt Flow Index Max"
+        this.ztitle = "Melt Flow Index"
+      }
     }
   }
 };
