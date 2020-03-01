@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "anychart": "^8.7.1",
+    "axios": "^0.19.2",
+    "bulma": "^0.8.0",
     "core-js": "^3.6.4",
     "d3": "^5.15.0",
     "papaparse": "^5.1.1",
